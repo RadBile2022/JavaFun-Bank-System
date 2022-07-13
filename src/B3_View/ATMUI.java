@@ -38,7 +38,7 @@ public class ATMUI extends javax.swing.JFrame {
         regRekeningBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("BANK JATIM");
+        setTitle("BANK SYSTEM");
 
         saldoBtn.setText("Saldo");
         saldoBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -201,7 +201,7 @@ public class ATMUI extends javax.swing.JFrame {
         if (evt.getActionCommand().equals("LOGIN")) {
             String pin = JOptionPane.showInputDialog(this, "Masukkan PIN ATM");
             if (controller.loginPin(pin)) {
-                screen.append("\n" + controller.getRekeningAktifasModel()
+                screen.append("\n\n\n" + controller.getRekeningAktifasModel()
                         .getNasabahNama() + ", Selamat Datang di ATM" 
                         + controller.getBank().getNama());
                 screen.append("\nLokasi " + controller.getLokasi());
@@ -221,7 +221,7 @@ public class ATMUI extends javax.swing.JFrame {
 
     private void saldoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saldoBtnActionPerformed
         // TODO add your handling code here:
-        screen.append("\nSaldo Sebesar : "
+        screen.append("\n Saldo Sebesar : "
                 + controller.getRekeningAktifasModel().getSaldo());
     }//GEN-LAST:event_saldoBtnActionPerformed
 
@@ -234,7 +234,7 @@ public class ATMUI extends javax.swing.JFrame {
         controller.getRekeningAktifasModel().addLogTransaction(Log.addLog(
                 TransactionType.CREDIT, jumlah, controller
                 .getRekeningAktifasModel().getSaldo()));
-        screen.append("\n Setor Sejumlah " + jumlah);
+        screen.append("\nSetor Sejumlah " + jumlah);
     }//GEN-LAST:event_setorBtnActionPerformed
 
     private void tarikBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tarikBtnActionPerformed
@@ -272,7 +272,7 @@ public class ATMUI extends javax.swing.JFrame {
 
     private void rekKoranBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rekKoranBtnActionPerformed
         // TODO add your handling code here:
-        screen.append("\n -------- Cek Rekening Koran --------");
+        screen.append("\n\n -------- Cek Rekening Koran --------");
         for (String log : controller.getRekeningAktifasModel().getLogTransaction()) {
             screen.append(log);
         }
@@ -289,8 +289,8 @@ public class ATMUI extends javax.swing.JFrame {
 
     private void allRekeningBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allRekeningBtnActionPerformed
         // TODO add your handling code here:
-        screen.append("\n\nNo Rekening  \t| Nama         \t\t| PIN  |");
-        screen.append("\n--------------------------------------------------------------------------");
+        screen.append("No Rekening\t| Nama         \t\t| PIN  |");
+        screen.append("\n------------------------------------------------------------------");
         for (Rekening rekening : controller.getBank().getListRekening()) {
             screen.append("\n " + rekening.getRekeningID() + "    \t| "
                 + rekening.getNasabahNama() + "\t| " + rekening.getPin() + "|");
@@ -316,10 +316,10 @@ public class ATMUI extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        Bank bank = new Bank(" BANK JATIM ");
-        bank.registrasiRekening(new Nasabah("Wahyu Wiradarma", "3505110808"),
-                new Rekening("01400001", "1234", 50000));
-        bank.registrasiRekening(new Nasabah("Ihsan Muhyidin", "3515110808"),
+        Bank bank = new Bank(" BANK RADAR ");
+        bank.registrasiRekening(new Nasabah("Wahyu Wiradarma", "01012020"),
+                new Rekening("01400001", "1234", 500000));
+        bank.registrasiRekening(new Nasabah("Ahmad Ahua Iqomuddin", "01012021"),
                 new Rekening("01400002", "4321", 150000));
 
         /* Set the Nimbus look and feel */
@@ -349,7 +349,7 @@ public class ATMUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ATMUI(bank, "ATM BANK JATIM cbg Bekasi")
+                new ATMUI(bank, "ATM BANK RADAR cabang Bekasi")
                         .setVisible(true);
             }
         });
